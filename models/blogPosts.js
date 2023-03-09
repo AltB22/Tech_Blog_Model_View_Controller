@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connections");
 
-class Locations extends Model {}
+class Blog extends Model {}
 
-Locations.init(
+Blog.init(
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -11,41 +11,26 @@ Locations.init(
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		surf_spot: {
+		title: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		location: {
+		blog_post: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		type: {
-			type: DataTypes.TEXT,
-			allowNull: true,
-		},
-		optimal_swell_direction: {
-			type: DataTypes.STRING,
-			allowNull: true,
-		},
-		optimal_wind: {
-			type: DataTypes.STRING,
-			allowNull: true,
-		},
-		optimal_swell_size: {
-			type: DataTypes.STRING,
-			allowNull: true,
-		},
-		optimal_tide: {
-			type: DataTypes.STRING,
-			allowNull: true,
-		},
+		// post_date: {//I don't think this is needed with timestamps: true
+		// 	type: DataTypes.TEXT,
+		// 	allowNull: true,
+		// },
 	},
 	{
 		sequelize,
+		timestamps: true,
 		freezeTableName: true,
 		underscored: true,
-		modelName: "locations",
+		modelName: "blog",//Discss where this is read with Tutor
 	}
 );
 
-module.exports = Locations;
+module.exports = Blog;
