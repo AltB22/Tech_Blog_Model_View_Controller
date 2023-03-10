@@ -18,28 +18,21 @@ User.init(
 		},
 		user_name: {
 			type: DataTypes.STRING,
-			allowNull: true,
+			allowNull: false,
 		},
-		// email: {
-		// 	type: DataTypes.STRING,
-		// 	allowNull: false,
-		// 	unique: true,
-		// 	validate: {
-		// 		isEmail: true,
-		// 	},
-		// },
+		
 		password: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
-				len: [12],
+				len: [8],
 			},
 		},
 	},
 	{
-		hooks: {
+		hooks: {//customized functions ie beforeCreate is a custom method.  Hooks more specific to sequelize
 			beforeCreate: async (newUserData) => {
-				newUserData.password = await bcrypt.hash(newUserData.password, 10);
+				newUserData.password = await bcrypt.hash(newUserData.password, 10);//10 represents the number of times to hash the password (scramble / encrypt) only bcrypt (which is a package) can interpret it.
 				return newUserData;
 			},
 		},

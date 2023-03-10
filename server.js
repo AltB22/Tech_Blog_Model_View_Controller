@@ -5,13 +5,13 @@ const expressHandlebars = require("express-handlebars");
 const routes = require("./controllers/");
 const helpers = require("./utils/helpers");
 
-const sequelize = require("./config/connections");
+const sequelize = require("./config/connection");
 
 // Create a new sequelize store using the express-session package
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
-const PORT = process.env.PORT || 3306;
+const PORT = process.env.PORT || 3001;//3306 is always used by mySQL - 9090, 8080, 8001 etc...
 
 const handlebars = expressHandlebars.create({ helpers });
 

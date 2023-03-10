@@ -19,17 +19,11 @@ Blog.init(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		// post_date: {//I don't think this is needed with timestamps: true
-		// 	type: DataTypes.TEXT,
-		// 	allowNull: true,
-		// },
+	
 	},
 	{
 		sequelize,
-		timestamps: true,
-		freezeTableName: true,
-		underscored: true,
-		modelName: "blog",//Discss where this is read with Tutor
+//Discss where this is read with Tutor
 	}
 );
 
