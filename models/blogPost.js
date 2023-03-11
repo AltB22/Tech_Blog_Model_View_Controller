@@ -22,6 +22,8 @@ Blog.init(
 	},
 	{
 		sequelize,
+		
+	
 	}
 );
 
