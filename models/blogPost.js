@@ -19,11 +19,9 @@ Blog.init(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-	
 	},
 	{
 		sequelize,
-//Discss where this is read with Tutor
 	}
 );
 
