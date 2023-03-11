@@ -1,5 +1,21 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const { User, Blog } = require("../../models");
+
+router.get('/', async (req, res) => {
+    // find all users
+    //also associated posts & comments?
+    
+    try {
+      const userData = await User.findAll();
+        // include: [{ model: User }],
+    //   });
+      res.status(200).json(userData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+  
+
 
 router.post("/signup", async (req, res) => {
     try {
