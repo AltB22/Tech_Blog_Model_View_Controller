@@ -6,10 +6,10 @@ router.get('/', async (req, res) => {
     // find all posts
     // be sure to include its associated comments
     try {
-      const categoryData = await Category.findAll({
+      const blogPosts = await Blog.findAll({
         include: [{ model: Product }],
       });
-      res.status(200).json(categoryData);
+      res.status(200).json(blogPosts);
     } catch (err) {
       res.status(500).json(err);
     }

@@ -20,7 +20,7 @@ Comment.init(
 	},
 	{
 		sequelize,
-//Discss where this is read with Tutor
+
 	}
 );
 
