@@ -1,16 +1,15 @@
 // const { User } = require('../models')
 
-const blogData = [
-    {
-      title: 'My first blog post',
-      blog_post: 'Lorem ipsum and other nonsense.',
+const commentData = [
+    { user_id: 1,
+      comment: 'Lorem ipsum and other comment nonsense.',
     },
     {
-      title: 'My second blog post',
-      blog_post: 'Lorem ipsum and other nonsense.',
+      user_id: 2,
+      comment: 'Lorem ipsum and other comment nonsense.',
     },
   ];
 
 // const userSeeds = () => User.bulkCreate(userData);
 
-module.exports = blogData;
+module.exports = commentData;
