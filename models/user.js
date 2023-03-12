@@ -19,13 +19,14 @@ User.init(
 		user_name: {
 			type: DataTypes.STRING,
 			allowNull: false,
+			unique: true,
 		},
 		
 		password: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
-				len: [8],//not less than number specified.
+				len: [8],//not less than number specified.  Will need to check password length and maybe use prompt on user end.
 			},
 		},
 	},
@@ -35,8 +36,15 @@ User.init(
 				newUserData.password = await bcrypt.hash(newUserData.password, 10);//10 represents the number of times to hash the password (scramble / encrypt) only bcrypt (which is a package) can interpret it.
 				return newUserData;
 			},
+			beforeUpdate: async (updatedUserData) => {
+				updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+				return updatedUserData;
+			  },
 		},
 		sequelize,
+		freezeTableName: true,
+		underscored: true,
+		modelName: 'user',
 		
 	}
 );
