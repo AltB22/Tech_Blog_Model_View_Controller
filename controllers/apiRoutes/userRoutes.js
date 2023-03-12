@@ -40,24 +40,24 @@ router.post("/signup", async (req, res) => {
 //Sign up post route - ****** needs resolving
 router.post("/login", async (req, res) => {
     try {
-        const userLogIn = await User.findOne({
+        const userName = await User.findOne({
             where:{
                 user_name: req.body.user_name,
-                // password: req.body.password,
+                password: req.body.password,
             }
         });
-        const valPassword = userLogIn.checkPassword(req.body.password);
+        const valPassword = userName.checkPassword(req.body.password);
 
-    if (!valPassword || !userLogIn){
+    if (!valPassword || !userName){
         res.status(400).json({ message: 'Unable to login. Please enter a valid username and password2'})
         return;
     }
         req.session.save(() => {
-            req.session.userId = userLogIn.id;
-            req.session.user_name = userLogIn.user_name;
+            req.session.id = userName.id;
+            req.session.user_name = userName.user_name;
 			req.session.loggedIn = true;
 
-			res.status(200).json(userLogIn, 'Login Successul. Welcome.');
+			res.status(200).json(userName, 'Login Successul. Welcome.');
     });  
 } catch (err) {
     console.log(err);
