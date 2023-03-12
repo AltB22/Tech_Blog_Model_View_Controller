@@ -37,10 +37,11 @@ Comment.belongsTo(User, {
 });
 
 //comments are tied to posts - not sure if this is needed given the above...
-Comment.belongsTo(Blog, {
-    foreignKey: 'user_id',
+// Comment.belongsToMany(Blog, {
+//     through: Blog,
+//     foreignKey: 'user_id',
 
-});
+// });
 
 
 //hasOne is another type
