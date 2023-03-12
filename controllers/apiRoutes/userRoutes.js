@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { User, Blog, Comment } = require("../../models");
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res) => {//This route may not be needed but served as the test route in insomnia for the seed data to return...
     // find all users
     //also associated posts & comments?
     
@@ -17,17 +17,19 @@ router.get('/', async (req, res) => {
   });
   
 
-
+//Sign up post route
 router.post("/signup", async (req, res) => {
     try {
-        const userInput = await User.create({
+        const newUser = await User.create({
             user_name: req.body.user_name,
             password: req.body.password,
         });
         req.session.save(() => {
+            req.session.userId = newUser.id;
+            req.session.user_name = newUser.user_name;
 			req.session.loggedIn = true;
 
-			res.status(200).json(userInput);
+			res.status(200).json(newUser);
     });  
 } catch (err) {
     console.log(err);
