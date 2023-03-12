@@ -11,7 +11,7 @@ const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
-const PORT = process.env.PORT || 3001;//3306 is always used by mySQL - 3000, 3001, 9090, 8080, 8001 etc...are ones to specify here
+const PORT = process.env.PORT || 3000;//3306 is always used by mySQL - 3000, 3001, 9090, 8080, 8001 etc...are ones to specify here
 
 const handlebars = expressHandlebars.create();
 

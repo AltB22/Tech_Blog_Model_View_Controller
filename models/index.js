@@ -1,3 +1,4 @@
+//Import models
 const User = require("./user");
 const Blog = require("./blogPost");
 const Comment = require("./comment")
@@ -30,11 +31,12 @@ Blog.hasMany(Comment, {
 
 //comments belong to user
 Comment.belongsTo(User, {
+    through: Blog,
     foreignKey: 'user_id',
   
 });
 
-//comments are tied to posts
+//comments are tied to posts - not sure if this is needed given the above...
 Comment.belongsTo(Blog, {
     foreignKey: 'user_id',
 
