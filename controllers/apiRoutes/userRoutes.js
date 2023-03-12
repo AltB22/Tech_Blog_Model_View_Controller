@@ -15,6 +15,24 @@ router.get('/', async (req, res) => {//This route may not be needed but served a
       res.status(500).json(err);
     }
   });
+
+  router.get('/:id', async (req, res) => {
+    // find one user by their `id` value
+    try {
+      const userData = await User.findByPk(req.params.id, {
+        include: [{ model: Blog }],
+      });
+  
+      if (!userData) {
+        res.status(404).json({ message: 'No user found with that id!' });
+        return;
+      }
+  
+      res.status(200).json(userData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
   
 
 //Sign up post route
