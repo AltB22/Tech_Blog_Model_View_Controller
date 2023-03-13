@@ -7,7 +7,10 @@ router.get('/', async (req, res) => {//This route may not be needed but served a
     
     try {
       const userData = await User.findAll({
-        attributes: {exclude: [ 'password' ]},
+        attributes: {exclude: [ 
+            'password' 
+        ]
+    },
         include: [{ model: Comment }],
       });
       res.status(200).json(userData);

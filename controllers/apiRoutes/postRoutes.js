@@ -4,10 +4,10 @@ const { User, Blog } = require("../../models");
 
 router.get('/', async (req, res) => {
     // find all posts
-    // be sure to include its associated comments
+    // include its associated user name and comments
     try {
       const blogPosts = await Blog.findAll({
-        include: [{ model: Product }],
+        include: [{ model: User }],
       });
       res.status(200).json(blogPosts);
     } catch (err) {
@@ -16,22 +16,22 @@ router.get('/', async (req, res) => {
   });
   
 
-
-router.post("/blog", async (req, res) => {
+//find blog post by primary key
+router.get('/:id', async (req, res) => {//Is this needed?
+    // find one user by their `id` value
     try {
-        const blogPost = await Blog.create({
-            title: req.body.user_name,
-            blog_post: req.body.password,
-        });
-        req.session.save(() => {
-			req.session.loggedIn = true;
-
-			res.status(200).json(blogPost);
-    });  
-} catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-}
-});
-
+      const blogPost = await Blog.findByPk(req.params.id, {
+        include: [{ model: User }],
+      });
+  
+      if (!blogPost) {
+        res.status(404).json({ message: 'No blog found with that id!' });
+        return;
+      }
+  
+      res.status(200).json(blogPost);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 module.exports = router;
