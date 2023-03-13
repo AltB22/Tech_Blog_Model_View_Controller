@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {//This route may not be needed but served a
     }
   });
 
-  router.get('/:id', async (req, res) => {
+  router.get('/:id', async (req, res) => {//Is this needed?
     // find one user by their `id` value
     try {
       const userData = await User.findByPk(req.params.id, {
