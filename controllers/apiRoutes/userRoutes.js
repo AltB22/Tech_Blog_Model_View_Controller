@@ -58,7 +58,7 @@ router.post("/signup", async (req, res) => {
 }
 });
 
-//Sign up post route - ****** needs resolving
+//Login post route - ****** needs resolving
 router.post("/login", async (req, res) => {
     try {
         const userName = await User.findOne({
