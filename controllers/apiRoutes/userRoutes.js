@@ -59,15 +59,17 @@ router.post("/signup", async (req, res) => {
 });
 
 //Login post route - ****** needs resolving
+let userName;
+let valPassword;
 router.post("/login", async (req, res) => {
     try {
-        const userName = await User.findOne({
+       userName = await User.findOne({
             where:{
                 user_name: req.body.user_name,
                 password: req.body.password,
             }
         });
-        const valPassword = userName.checkPassword(req.body.password);
+       valPassword = userName.checkPassword(req.body.password);
 
     if (!valPassword || !userName){
         res.status(400).json({ message: 'Unable to login. Please enter a valid username and password2'})

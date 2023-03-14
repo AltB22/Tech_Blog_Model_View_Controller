@@ -60,6 +60,6 @@ No testing was utilized for this project
 -Sequelize<br>
 -MySQL<br>
 
-### GitHub Link: <https://github.com/Vinni99/The-Ocean-Pulse.git>
+### GitHub Deployed URL: <>
 
 ## License
