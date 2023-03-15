@@ -5,17 +5,8 @@ const Comment = require("./comment")
 
 //Associations - what belongs to what
 
-//User has many blog posts
-User.hasMany(Blog, {
-    foreignKey: 'user_id',
-    onDelete: 'CASCADE',
-});
+// Review sequelize association
 
-//User has many comments
-User.hasMany(Comment, {
-    foreignKey: 'user_id',
-    onDelete: 'CASCADE',
-})
 
 //blog posts belong to users
 Blog.belongsTo(User, {
@@ -36,12 +27,6 @@ Comment.belongsTo(User, {
   
 });
 
-//comments are tied to posts - not sure if this is needed given the above...
-// Comment.belongsToMany(Blog, {
-//     through: Blog,
-//     foreignKey: 'user_id',
-
-// });
 
 
 //hasOne is another type

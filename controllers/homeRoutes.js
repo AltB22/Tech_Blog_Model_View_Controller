@@ -1,7 +1,7 @@
 //front end routes typically get routes
 const router = require("express").Router();
 const { User, Blog, Comment } = require("../models");
-const sequelize = require('sequelize');
+// const sequelize = require('sequelize');
 
 // Find all blog posts
 router.get('/', async (req, res) => {
@@ -9,7 +9,8 @@ router.get('/', async (req, res) => {
     // include its associated user name and comments
     try {
       const blogPosts = await Blog.findAll({
-        include: [{ model: User }],
+        include: [{ model: User, Comment }],
+        
         // // exclude:  
       });
       res.status(200).json(blogPosts);
