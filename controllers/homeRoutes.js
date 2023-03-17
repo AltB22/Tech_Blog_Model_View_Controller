@@ -1,6 +1,7 @@
 //front end routes typically get routes
 const router = require("express").Router();
 const { User, Blog, Comment } = require("../models");
+const withAuth = require('../utils/userAuth');
 // const sequelize = require('sequelize');
 
 // Find all blog posts
@@ -13,7 +14,8 @@ router.get('/', async (req, res) => {
         
         // // exclude:  
       });
-      res.status(200).json(blogPosts);
+      // res.status(200).json(blogPosts);
+      res.render('layouts/main', {blogPosts});
     } catch (err) {
       res.status(500).json(err);
     }
@@ -33,6 +35,7 @@ router.get('/:id', async (req, res) => {//Maybe change this to findOne by blog t
       }
   
       res.status(200).json(blogPost);
+      res.render('single-post');
     } catch (err) {
       res.status(500).json(err);
     }
