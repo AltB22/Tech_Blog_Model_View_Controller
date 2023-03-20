@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
         
         // // exclude:  
       });
-      res.status(200).json(blogPosts);
+      res.render('dashboard', { blogPosts });
     } catch (err) {
       res.status(500).json(err);
     }

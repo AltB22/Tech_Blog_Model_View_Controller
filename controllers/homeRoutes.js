@@ -15,7 +15,8 @@ router.get('/', async (req, res) => {
         // // exclude:  
       });
       // res.status(200).json(blogPosts);
-      res.render('layouts/main', {blogPosts});
+    res.render('homepage', { blogPosts //, loggedIn: req.session.loggedIn
+   });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -34,8 +35,9 @@ router.get('/:id', async (req, res) => {//Maybe change this to findOne by blog t
         return;
       }
   
-      res.status(200).json(blogPost);
-      res.render('single-post');
+      // res.status(200).json(blogPost);
+      res.render('single-post', { blogPost, loggedIn: req.session.loggedIn });
+      
     } catch (err) {
       res.status(500).json(err);
     }
