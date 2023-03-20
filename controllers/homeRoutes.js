@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
         // // exclude:  
       });
       // res.status(200).json(blogPosts);
-    res.render('homepage', { blogPosts //, loggedIn: req.session.loggedIn
+    res.render('homepage', { blogPosts, loggedIn: req.session.loggedIn
    });
     } catch (err) {
       res.status(500).json(err);
@@ -44,9 +44,9 @@ router.get('/:id', async (req, res) => {//Maybe change this to findOne by blog t
   });
 
  //Login GET route
-router.get("/user/login", (req, res) => {
+router.get("/", (req, res) => {
   if(req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect('/login');
     return;
   }
   res.render('login');

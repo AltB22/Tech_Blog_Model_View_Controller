@@ -30,7 +30,14 @@ const { User, Blog, Comment } = require("../../models");
   //     res.status(500).json(err);
   //   }
   // });
-  
+
+router.get("/login", (req, res) => {
+    if(req.session.loggedIn) {
+      res.redirect('back');
+      return;
+    }
+    res.render('login');
+  });
 
 //Sign up post route
 router.post("/signup", async (req, res) => {
