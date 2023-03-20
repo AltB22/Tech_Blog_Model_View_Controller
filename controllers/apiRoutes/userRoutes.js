@@ -31,13 +31,13 @@ const { User, Blog, Comment } = require("../../models");
   //   }
   // });
 
-router.get("/login", (req, res) => {
-    if(req.session.loggedIn) {
-      res.redirect('back');
-      return;
-    }
-    res.render('login');
-  });
+// router.get("/login", (req, res) => {
+//     if(req.session.loggedIn) {
+//       res.redirect('back');
+//       return;
+//     }
+//     res.render('login');
+//   });
 
 //Sign up post route
 router.post("/signup", async (req, res) => {
