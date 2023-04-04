@@ -1,44 +1,12 @@
 //api routes should be for creation of data typ post, put, delete
 const router = require("express").Router();
+const userAuth = require("../../utils/userAuth");
 
 const { User, Blog, Comment } = require("../../models");
 
-// Find all comments ****** Needs resolving
-router.get('/', async (req, res) => {
-    // find all posts
-    // include its associated user name and comments
-    try {
-      const comments = await Comment.findAll({
-        include: [{ model: User }],
-        // // exclude:  
-      });
-      res.status(200).json(comments);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-  
-
-//find comment by ID
-router.get('/:id', async (req, res) => {//Maybe change this to findOne by comment title?
-    try {
-      const comment = await Comment.findByPk(req.params.id, {
-        include: [{ model: User }],
-      });
-  
-      if (!comment) {
-        res.status(404).json({ message: 'No comment found with that id!' });
-        return;
-      }
-  
-      res.status(200).json(comment);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
 
   // Create new blog post route
-router.post("/newcomment", async (req, res) => {
+router.post("/newcomment", userAuth, async (req, res) => {
     try {
         const newComment = await Comment.create({
             comment: req.body.comment,

@@ -44,34 +44,16 @@ router.get('/post/:id', async (req, res) => {//Maybe change this to findOne by b
   }
 });
 
-router.get('/:id', withAuth, async (req, res) => {//Maybe change this to findOne by blog title?
-  try {
-    const blogPost = await Blog.findByPk(req.params.id, {
-      include: [{ model: User }],
-    });
-
-    if (!blogPost) {
-      res.status(404).json({ message: 'No blog post found with that id!' });
-      return;
-    }
-
-    // res.status(200).json(blogPost);
-    res.render('single-post', { blogPost, loggedIn: req.session.loggedIn });
-
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
 //Login GET route
+
 router.get("/login", (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
+  try {
+    res.render("login", { layout: "main" });
+  } catch (err) {
+    console.log(err);
+    res.status(404).json(error);
   }
-  res.render('login', {
-    blogPosts, loggedIn: req.session.loggedIn
-  });
 });
 
 
