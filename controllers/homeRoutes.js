@@ -10,9 +10,20 @@ router.get('/', async (req, res) => {
   // include its associated user name and comments
   try {
     const blogPosts = await Blog.findAll({
-      include: [{ model: User, Comment }],
-
-      // // exclude:  
+      attributes: [
+        'id', 'title', 'blog_post', 
+      ],
+      include: [{ model: User,
+                  attributes: ['user_name']
+                },
+                { model: Comment,
+                  attributes: ['id', 'comment','user_id', 'blog_id', 'created_at' ],
+                  include: {
+                    model: User,
+                    attributes: ['user_name']
+                  }
+                }
+              ],
     });
     // res.status(200).json(blogPosts);
     res.render('homepage', {
