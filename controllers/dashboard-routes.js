@@ -1,28 +1,26 @@
 //front end routes typically get routes
 const router = require("express").Router();
-const { User, Blog, Comment } = require("../models");
+const { User, Post, Comment } = require("../models");
 // const sequelize = require('sequelize');
 const userAuth = require("../utils/userAuth");
 
-// Find all blog posts for the user who is logged in need authenication
+// Find all posts for the user who is logged in need authenication
 router.get('/', userAuth, async (req, res) => {
     // find all posts
     // include its associated user name and comments
-    try {
-      const blogPosts = await Blog.findAll({
-        include: [{ model: User, Comment }],
+      const blogPosts = getPosts(req.user.id);
         
-        // // exclude:  
-      });
-      res.render('dashboard', { blogPosts });
-    } catch (err) {
-      res.status(500).json(err);
-    }
+      res.render('main', { 
+        logggedIn: req.session.logggedIn,
+        body: 'dashboard',
+        posts: Post
+       });
+
   });
   
 
-//find blog post by ID
-router.get('/edit/:id', async (req, res) => {//Maybe change this to findOne by blog title?
+//find post by ID
+router.get('/edit/:id', async (req, res) => {//Maybe change this to findOne by Post title?
     try {
      //insert front end here and pass in specified post for editing
     } catch (err) {

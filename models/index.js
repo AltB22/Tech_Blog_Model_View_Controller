@@ -1,6 +1,6 @@
 //Import models
 const User = require("./user");
-const Blog = require("./blogPost");
+const Post = require("./post");
 const Comment = require("./comment")
 
 //Associations - what belongs to what
@@ -9,20 +9,20 @@ const Comment = require("./comment")
 
 
 //blog posts belong to users
-Blog.belongsTo(User, {
+Post.belongsTo(User, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
 });
 
 //posts have many comments
-Blog.hasMany(Comment, {
+Post.hasMany(Comment, {
     foreignKey: 'post_id',
     onDelete: 'CASCADE',
 });
 
 //comments belong to user
 Comment.belongsTo(User, {
-    through: Blog,
+    through: Post,
     foreignKey: 'user_id',
   
 });
@@ -33,4 +33,4 @@ Comment.belongsTo(User, {
 
 //belongsToMany, belongsToOne - read docs
 
-module.exports = { User, Blog, Comment };
+module.exports = { User, Post, Comment };
