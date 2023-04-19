@@ -1,6 +1,6 @@
 // function for checking to see if a user is logged in.
 const userAuth = (req, res, next) => {
-	if (!req.session.logged_in) {
+	if (!req.session.loggedIn) {
 		res.redirect("/login");
 	} else {
 		next();
