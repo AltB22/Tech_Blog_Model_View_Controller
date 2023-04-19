@@ -6,10 +6,6 @@
 - [Usage](#usage)
 - [Acceptance Criteria](#acceptance-criteria)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Contribution](#contribution)
-- [Testing](#testing)
-- [Mockup](#mockup)
 - [Credits](#credits)
 - [License](#license)
 
