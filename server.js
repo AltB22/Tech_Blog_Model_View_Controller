@@ -1,36 +1,38 @@
-const path = require("path");
-const express = require("express");
-const session = require("express-session");
-const expressHandlebars = require("express-handlebars");
-const routes = require("./controllers/");
-const handlebars = expressHandlebars.create();
-const helpers = require("./utils/helpers");
+const path = require('path');
+const express = require('express');
+const session = require('express-session');
+const exphbs = require('express-handlebars');
+const routes = require('./controllers');
+const helpers = require('./utils/helpers');
 
-const sequelize = require("./config/connection");
-
-// Create a new sequelize store using the express-session package
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const sequelize = require('./config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;//3306 is always used by mySQL - 3000, 3001, 9090, 8080, 8001 etc...are ones to specify here
 
+const hbs = exphbs.create({ helpers });//Sets up handlebars.js engine with helpers
 
 
-// Configure and link a session object with the sequelize store
+// Configures and links a session object with the sequelize store
 const sess = {
-	secret: "Secret Secret",
-	cookie: {},
+	secret: 'Super secret secret',
+	cookie: {
+	  maxAge: 300000,
+	  httpOnly: true,
+	  secure: false,
+	  sameSite: 'strict',
+	},
 	resave: false,
 	saveUninitialized: true,
 	store: new SequelizeStore({
-		db: sequelize,
-	}),
-};
+	  db: sequelize
+	})
+  };
 
-//  express-session and store as Express.js middleware
 app.use(session(sess));
 
-app.engine("handlebars", handlebars.engine);
+app.engine("handlebars", hbs.engine);//Tells express.js which template engine to use, in this case "handlebars"
 app.set("view engine", "handlebars");
 
 app.use(express.json());
