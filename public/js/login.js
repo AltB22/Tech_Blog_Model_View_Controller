@@ -20,5 +20,5 @@ const loginButtonHandler = async (event) => {
     }
   };
   
-  document.getElementById('login-btn').addEventListener('submit', loginButtonHandler);
+  document.getElementById("login-btn").addEventListener('submit', loginButtonHandler);
   

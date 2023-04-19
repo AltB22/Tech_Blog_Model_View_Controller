@@ -12,4 +12,4 @@ const logout = async () => {
 	}
 };
 
-document.getElementById("#logout").addEventListener("submit", logout);
+document.getElementById("#logout-btn").addEventListener("submit", logout);
