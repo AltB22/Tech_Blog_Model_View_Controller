@@ -4,7 +4,7 @@ const withAuth = require('../utils/userAuth');
 
 router.get('/', async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
+    // Get all posts and JOIN with user data
     const blogBosts = await Post.findAll({
       include: [
         {
