@@ -13,24 +13,19 @@
       <div id='header-head'>
         <h1 id='header-logo'>The Tech Blog</h1>
         {{! If the username is available, display it }}
-        {{#if username}}
-        <p id='loggedin'><span>Logged in as</span>
-          <em style='font-weight: 800'>{{username}}</em>
-        </p>
-        {{/if}}
       </div>
       <nav>
         <a class='navItem' href='/'>Home</a>
         <a class='navItem' href='/dashboard'>Dashboard</a>
         {{! loggedIn is a sessions value we created (saved) when a user makes an account
         and logs in, from there, it becomes accessible via all routes }}
-        {{#if loggedIn}}
+        {{#if logged_in}}
         <a class='navItem' href='/logout' id='logout'>Logout</a>
         {{else}}
         <a class='navItem' href='/login'>Login</a>
         {{/if}}
       </nav>
-      <div id='bg'></div>
+      {{!-- <div id='bg'></div> --}}
     </header>
     <main>
       {{{body}}}
@@ -40,7 +35,7 @@
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
   <script src='/public/js/login.js'></script>
-  {{#if loggedIn}}
+  {{#if logged_in}}
   <script src='/public/js/logout.js'></script>
   {{/if}}
 </body>
